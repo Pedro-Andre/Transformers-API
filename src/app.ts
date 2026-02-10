@@ -7,6 +7,8 @@ function createApp() {
   app.use(express.json());
   app.use("/api", router);
 
+  console.log("server rodando");
+
   return app;
 }
 
