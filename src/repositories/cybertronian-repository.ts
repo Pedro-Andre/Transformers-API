@@ -147,3 +147,15 @@ export const findCybertroniansById = async (
 ): Promise<CybertronianModel | undefined> => {
   return database.find((cybertronian) => cybertronian.id === id);
 };
+
+export const insertCybertronian = async (cybertronian: CybertronianModel) => {
+  database.push(cybertronian);
+};
+
+export const deleteOneCybertronian = async (id: number) => {
+  const index = database.findIndex((c) => c.id === id);
+
+  if (index !== -1) {
+    database.splice(index, 1);
+  }
+};
