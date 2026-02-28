@@ -1,4 +1,6 @@
-# Transformers API
+<img width="1436" height="201" alt="logo" src="https://github.com/user-attachments/assets/8b771b48-a6df-485e-9bbe-64c7a6beef2c" />
+
+
 
 Uma API REST construída com Express e TypeScript para gerenciar informações sobre Cybertronians (personagens do universo Transformers).
 
