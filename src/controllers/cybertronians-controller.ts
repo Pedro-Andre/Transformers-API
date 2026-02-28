@@ -32,3 +32,12 @@ export const deleteCybertronian = async (req: Request, res: Response) => {
 
   res.status(httpResponse.statusCode).json(httpResponse.body);
 };
+
+export const updateCybertronian = async (req: Request, res: Response) => {
+  const id = parseInt(req.params.id as string);
+  const bodyData = req.body;
+
+  const httpResponse = await service.updateCybertronianService(id, bodyData);
+
+  res.status(httpResponse.statusCode).json(httpResponse.body);
+};

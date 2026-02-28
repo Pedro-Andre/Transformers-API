@@ -21,9 +21,9 @@ export const getCybertronianByIdService = async (id: number) => {
   let response = null;
 
   if (data) {
-    response = HttpResponse.ok(data);
+    response = await HttpResponse.ok(data);
   } else {
-    response = HttpResponse.noContent();
+    response = await HttpResponse.noContent();
   }
 
   return response;
@@ -46,9 +46,29 @@ export const postCybertronianService = async (
 
 export const deleteCybertronianService = async (id: number) => {
   let response = null;
+  const isDeleted = await CybertronianRepository.deleteOneCybertronian(id);
 
   await CybertronianRepository.deleteOneCybertronian(id);
 
-  response = HttpResponse.ok({ message: "Deleted" });
+  if (isDeleted) {
+    response = await HttpResponse.ok({ message: "Deleted" });
+  } else {
+    response = await HttpResponse.badRequest();
+  }
+  return response;
+};
+
+export const updateCybertronianService = async (
+  id: number,
+  body: CybertronianModel,
+) => {
+  const data = await CybertronianRepository.findAndModifyCybertronian(id, body);
+  let response = null;
+
+  if (Object.keys(data).length === 0) {
+    response = await HttpResponse.badRequest();
+  } else {
+    response = await HttpResponse.ok(data);
+  }
   return response;
 };
